@@ -78,7 +78,7 @@ resource "aws_instance" "app_server" {
   security_groups = [aws_security_group.basic_sg.name]
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = var.instance_name
   }
 }
 
