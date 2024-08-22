@@ -9,6 +9,8 @@ terraform {
 
 provider "google" {
   project = "kuber-430607"
+  region  = var.region
+  zone    = var.zone
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -18,7 +20,6 @@ resource "google_compute_network" "vpc_network" {
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
   machine_type = "f1-micro"
-  zone         = "us-east1-b"
   tags         = ["web", "dev"]
 
   boot_disk {
