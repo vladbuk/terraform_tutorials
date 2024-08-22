@@ -59,7 +59,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   metadata = {
-    ssh-keys = "user:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGlcCuQc4RWSFnbkDd/pOUcNM7Dheq9wouceYxRmborBVX+HkuAeyD0COgz1ouwNluQ60hLgWYLyZ/ZuHVw41K6W/ySf4Qb2pZG3NQLFHIGAxLtsGc+/6OlK2i5kSz6dKUdPdHfHKzMciYN0Qa8h+o6DmwNvXh+DR7OvY8qTA+C2K1PaUvoxQSxgDN470sywyWLV9EvMS4wXXWdru0AdLuhyHpe1thkvsHlDefIHX8GW2iue/L2waQVKF/SQuHL5Jew8mP4CbZA52hsXWnpUWtndw9WEKLLvtmj/IsDfneH+aizVHjsRyf9w3Fe6wNvMd1eO0v8wKRbt6H1QT5ztqR"
+    ssh-keys = "user:${var.public_key}"
   }
 }
 
