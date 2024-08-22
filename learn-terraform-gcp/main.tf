@@ -1,4 +1,11 @@
 terraform {
+  cloud { 
+    organization = "vladbuk-inc" 
+    workspaces { 
+      name = "learning-gcp" 
+    } 
+  } 
+
   required_providers {
     google = {
       source  = "hashicorp/google"
