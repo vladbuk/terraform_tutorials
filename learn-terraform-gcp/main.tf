@@ -1,10 +1,10 @@
 terraform {
-  cloud { 
-    organization = "vladbuk-inc" 
-    workspaces { 
-      name = "learning-gcp" 
-    } 
-  } 
+  cloud {
+    organization = "vladbuk-inc"
+    workspaces {
+      name = "learning-gcp"
+    }
+  }
 
   required_providers {
     google = {
@@ -42,7 +42,8 @@ resource "google_compute_firewall" "default" {
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
+  count        = 2
+  name         = "terraform-instance-${count.index}"
   machine_type = "f1-micro"
   tags         = ["web", "dev"]
 
@@ -65,13 +66,13 @@ resource "google_compute_instance" "vm_instance" {
 
 output "instance_ids" {
   description = "The IDs of the Google Compute instances"
-  value       = google_compute_instance.vm_instance.id
+  value       = google_compute_instance.vm_instance[*].id
 }
 
 output "ip" {
-  value = google_compute_instance.vm_instance.network_interface.0.network_ip
+  value = google_compute_instance.vm_instance[*].network_interface.0.network_ip
 }
 
 output "public_ip" {
-  value = google_compute_instance.vm_instance.network_interface.0.access_config[0].nat_ip
+  value = google_compute_instance.vm_instance[*].network_interface.0.access_config[0].nat_ip
 }
