@@ -1,4 +1,12 @@
 terraform {
+
+    cloud { 
+    organization = "vladbuk-inc" 
+    workspaces { 
+      name = "learning" 
+    } 
+  } 
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -97,4 +105,3 @@ output "private_ip" {
   description = "The private IP address of the EC2 instances"
   value       = aws_instance.app_server[*].private_ip
 }
-
