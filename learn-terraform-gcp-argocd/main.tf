@@ -1,3 +1,12 @@
+terraform { 
+  cloud { 
+    organization = "vladbuk-inc" 
+    workspaces { 
+      name = "learning-gcp-argocd" 
+    } 
+  } 
+}
+
 provider "google" {
   project = "kuber-430607"
   region  = "us-east1"
@@ -46,10 +55,10 @@ resource "helm_release" "argocd" {
   create_namespace = true
   namespace        = "argocd"
 
-  set {
-    name  = "server.service.type"
-    value = "LoadBalancer"
-  }
+  # set {
+  #   name  = "server.service.type"
+  #   value = "LoadBalancer"
+  # }
 }
 
 
