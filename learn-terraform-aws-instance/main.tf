@@ -85,6 +85,22 @@ resource "aws_instance" "app_server" {
   key_name      = data.aws_key_pair.vboook.key_name
   security_groups = [aws_security_group.basic_sg.name]
 
+  user_data = <<-EOF
+            #!/bin/bash
+            sudo add-apt-repository --yes ppa:deadsnakes/ppa
+            sudo apt update -y
+            sudo apt install -y sqlite3 python3.10 python3.10-venv python3.10-dev python3-virtualenv
+            cd 
+            git clone https://github.com/dimafil1903/tyres-scrap.git
+            cd tyres-scrap
+            virtualenv --python=/usr/bin/python3.10 venv
+            source venv/bin/activate
+            python -m ensurepip --upgrade
+            wget https://bootstrap.pypa.io/get-pip.py -P venv/bin/
+            python venv/bin/get-pip.py
+            pip install sqlalchemy aiohttp fake_useragent selenium free-proxy undetected_chromedriver Proxy_List_Scrapper bs4 mss pydantic databases aiosqlite
+            EOF
+
   tags = {
     Name = var.instance_name
   }
