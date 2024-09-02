@@ -90,6 +90,8 @@ resource "aws_instance" "app_server" {
             add-apt-repository --yes ppa:deadsnakes/ppa
             apt update -y
             apt install -y sqlite3 python3.10 python3.10-venv python3.10-dev python3-virtualenv
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
             cd /home/ubuntu
             git clone https://github.com/dimafil1903/tyres-scrap.git
             cd tyres-scrap
