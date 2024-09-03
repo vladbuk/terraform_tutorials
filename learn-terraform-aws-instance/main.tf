@@ -84,7 +84,10 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
   key_name      = data.aws_key_pair.vboook.key_name
   security_groups = [aws_security_group.basic_sg.name]
-
+  root_block_device {
+    volume_size = 16 
+  }
+  
   user_data = <<-EOF
             #!/bin/bash
             add-apt-repository --yes ppa:deadsnakes/ppa
