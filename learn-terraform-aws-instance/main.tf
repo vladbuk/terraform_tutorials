@@ -87,7 +87,7 @@ resource "aws_instance" "app_server" {
   root_block_device {
     volume_size = 16 
   }
-  
+
   user_data = <<-EOF
             #!/bin/bash
             add-apt-repository --yes ppa:deadsnakes/ppa
@@ -104,6 +104,12 @@ resource "aws_instance" "app_server" {
             wget https://bootstrap.pypa.io/get-pip.py -P venv/bin/
             python venv/bin/get-pip.py
             pip install sqlalchemy aiohttp fake_useragent selenium free-proxy undetected_chromedriver Proxy_List_Scrapper bs4 mss pydantic databases aiosqlite
+            fallocate -l 4G /swapfile
+            dd if=/dev/zero of=/swapfile bs=1M count=4096
+            chmod 600 /swapfile
+            mkswap /swapfile
+            swapon /swapfile
+            echo "/swapfile       none    swap    sw      0       0" | tee -a /etc/fstab
             EOF
 
   tags = {
