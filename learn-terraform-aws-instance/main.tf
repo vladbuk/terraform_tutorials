@@ -95,7 +95,7 @@ resource "aws_instance" "app_server" {
             apt install -y sqlite3 python3.10 python3.10-venv python3.10-dev python3-virtualenv
             wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
             dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
-            cd /home/ubuntu
+            cd /opt
             git clone https://github.com/dimafil1903/tyres-scrap.git
             cd tyres-scrap
             virtualenv --python=/usr/bin/python3.10 venv
