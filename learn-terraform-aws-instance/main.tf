@@ -18,7 +18,7 @@ terraform {
 }
 
 provider "aws" {
-  region = us-west-1
+  region = "us-west-1"
 }
 
 data "aws_ami" "ubuntu" {
@@ -67,7 +67,7 @@ resource "aws_security_group" "basic_sg" {
 
     ingress {
     from_port   = 1194
-    to_port     = 4494
+    to_port     = 1194
     protocol    = "udp"
     cidr_blocks = ["0.0.0.0/0"]
   }
