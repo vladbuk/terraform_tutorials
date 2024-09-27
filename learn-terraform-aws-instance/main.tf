@@ -25,12 +25,12 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
   }
 }
 
 data "aws_key_pair" "vboook" {
-  key_name = "vboook"
+  key_name = "vbook-us-west-1"
 }
 
 data "aws_vpc" "default" {
@@ -60,6 +60,13 @@ resource "aws_security_group" "basic_sg" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    ingress {
+    from_port   = 1194
+    to_port     = 4494
+    protocol    = "udp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
