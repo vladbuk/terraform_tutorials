@@ -19,6 +19,7 @@ terraform {
 
 provider "aws" {
   region = "us-west-1"
+  profile = "mycars"
 }
 
 data "aws_ami" "ubuntu" {
@@ -31,8 +32,8 @@ data "aws_ami" "ubuntu" {
   }
 }
 
-data "aws_key_pair" "vboook" {
-  key_name = "vbook-us-west-1"
+data "aws_key_pair" "deploy" {
+  key_name = "deploy"
 }
 
 data "aws_vpc" "default" {
@@ -91,7 +92,7 @@ resource "aws_instance" "app_server" {
   count         = 1
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  key_name      = data.aws_key_pair.vboook.key_name
+  key_name      = data.aws_key_pair.deploy.key_name
   security_groups = [aws_security_group.basic_sg.name]
   root_block_device {
     volume_size = 16 
