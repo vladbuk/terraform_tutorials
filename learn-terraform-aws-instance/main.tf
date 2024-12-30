@@ -18,8 +18,8 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-1"
-  profile = "mycars"
+  region = "eu-central-1"
+  profile = "default"
 }
 
 data "aws_ami" "ubuntu" {
@@ -33,7 +33,7 @@ data "aws_ami" "ubuntu" {
 }
 
 data "aws_key_pair" "deploy" {
-  key_name = "deploy"
+  key_name = "vboook"
 }
 
 data "aws_vpc" "default" {
