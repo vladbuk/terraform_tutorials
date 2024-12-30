@@ -120,7 +120,7 @@ resource "aws_instance" "app_server" {
             mkswap /swapfile
             swapon /swapfile
             echo "/swapfile       none    swap    sw      0       0" | tee -a /etc/fstab
-            cd 
+            cd /root
             wget https://git.io/vpn -O openvpn-install.sh
             EOF
 
